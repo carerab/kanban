@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>カード利用明細サンプル</title>
+<title>カード利用明細</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#f5f7fa;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#333}
@@ -23,7 +23,7 @@ body{background:#f5f7fa;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",
 .credit-card{width:86px;height:54px;background:#111;border-radius:8px;margin-bottom:12px}
 .product{font-size:28px;line-height:1.3;margin-bottom:8px;font-weight:700}
 .last4{color:#666;margin-bottom:20px;font-size:20px}
-.row{display:flex;justify-content:space-between;padding:18px 0;border-top:1px solid #eee}
+.row{display:flex;justify-content:space-between;padding:18px 0;border-top:1px solid #eee;font-size:20px}
 .amount{font-size:28px;font-weight:bold}
 .link{color:#0070ce;font-weight:bold;padding-top:18px;border-top:1px solid #eee}
 .section-title{font-size:32px;font-weight:bold;margin-bottom:8px}
@@ -41,11 +41,13 @@ body{background:#f5f7fa;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",
 .detail-text{font-size:22px;line-height:1.8;margin-bottom:30px}
 .darkblue{color:#001f6b}
 .backbtn{width:100%;background:#0070ce;color:white;border:0;border-radius:10px;padding:16px;font-size:18px;margin-top:40px}
+.notice{border:1px solid #ddd;border-radius:16px;padding:22px;line-height:1.8;font-size:20px;margin-bottom:24px}
+.tab-on{background:#0070ce;color:white;padding:18px;text-align:center;border-radius:12px 12px 0 0;font-weight:bold;font-size:20px}
+.tab-off{background:#eef3f8;padding:18px;text-align:center;border-radius:0 0 12px 12px;font-weight:bold;font-size:20px}
 </style>
 </head>
 
 <body>
-
 <div id="app"></div>
 <div class="feedback">Feedback</div>
 
@@ -79,261 +81,113 @@ document.getElementById("app").innerHTML = header() + `
     <div class="credit-card"></div>
     <div class="product">MARRIOTT BONVOY<br>アメリカン・エキスプレス・プレミアム・カード</div>
     <div class="last4">••••41006</div>
-
-    <div class="row">
-      <span>今回締め日時点ご利用金額</span>
-      <span class="amount">¥249,215</span>
-    </div>
-    <div class="row">
-      <span>新規ご利用金額</span>
-      <span class="amount">¥140,041</span>
-    </div>
+    <div class="row"><span>今回締め日時点ご利用金額</span><span class="amount">¥249,215</span></div>
+    <div class="row"><span>新規ご利用金額</span><span class="amount">¥140,041</span></div>
     <div class="link">↓ カードご利用代金明細書（PDF形式）</div>
   </div>
 
   <div class="card">
     <div class="section-title">最近のご利用</div>
     <div class="period">2026/05/20〜今日現在（次回締め日 2026/06/19）</div>
-
-    <div class="actions">
-      <span>↓ ダウンロード</span>
-      <span>🖨 印刷</span>
-    </div>
-
+    <div class="actions"><span>↓ ダウンロード</span><span>🖨 印刷</span></div>
     <div class="filters">
       <div class="filter">すべての利用</div>
       <div class="filter">区分 ▼</div>
       <div class="filter">ご利用分 ▼</div>
     </div>
 
-    <div class="transaction" onclick="showHotelDetail()">
-      <div class="date">06/06</div>
-      <div class="shop">名古屋東急ホテル ー愛知県 名古屋市</div>
-      <div class="price">¥24,700 〉</div>
-    </div>
-
-    <div class="transaction">
-      <div class="date">06/07</div>
-      <div class="shop">ＪＲ東海</div>
-      <div class="price">¥1,360 〉</div>
-    </div>
-
-    <div class="transaction">
-      <div class="date">06/06</div>
-      <div class="shop">スターバックス コーヒー ジャパン 東</div>
-      <div class="price">¥1,000 〉</div>
-    </div>
-
-    <div class="transaction">
-      <div class="date">06/06</div>
-      <div class="shop">ＤＣＭ</div>
-      <div class="price">¥519 〉</div>
-    </div>
-
-    <div class="transaction">
-      <div class="date">06/06</div>
-      <div class="shop">ＤＣＭ</div>
-      <div class="price">¥1,738 〉</div>
-    </div>
-
-    <div class="transaction">
-      <div class="date">06/04</div>
-      <div class="shop">STAR CLUSTER PTE. LTD.</div>
-      <div class="price">¥1,654 〉</div>
-    </div>
-
-    <div class="transaction">
-      <div class="date">06/03</div>
-      <div class="shop">アマゾン シーオージェーピー</div>
-      <div class="price">¥369 〉</div>
-    </div>
-
-    <div class="transaction">
-      <div class="date">06/03</div>
-      <div class="shop">アマゾン JP マーケット</div>
-      <div class="price">¥3,235 〉</div>
-    </div>
+    ${tx("06/16","GENKIZUS HI HONBU","¥1,309")}
+    ${tx("06/15","COINPARK AIPOSS","¥600")}
+    ${tx("06/15","DRUGSTORE SQUARE","¥720")}
+    ${tx("06/15","セブンイレブン","¥1,296")}
+    ${tx("06/15","ファミリーマート 多治見笠原町東","¥821")}
+    ${tx("06/15","名古屋駅前こころのクリニック 愛知県","¥1,510")}
+    ${tx("06/15","名岐国際ゴルフ倶楽部 岐阜県 土岐市","¥10,022")}
+    ${tx("06/14","ファミリーマート 黒川","¥869")}
+    ${tx("06/13","スターバックス コーヒー ジャパン 東","¥1,000")}
+    <div class="transaction"><div class="date">06/10</div><div class="shop green">前回分口座振替金額 お支払/調整分</div><div class="price green">-¥249,215 〉</div></div>
+    ${tx("06/09","ナポリの窯 ストロベリーコーンズ 愛知","¥1,200")}
+    ${tx("06/09","ファミリーマート 黒川","¥1,845")}
+    ${tx("06/09","DMM 東京都 渋谷区","¥524")}
+    ${tx("06/09","DMM 東京都 渋谷区","¥674")}
+    ${tx("06/09","DMM 東京都 渋谷区","¥968")}
+    ${tx("06/07","つばめ交通","¥2,000")}
+    <div class="transaction" onclick="showHotelDetail()"><div class="date">06/06</div><div class="shop">名古屋東急ホテル ー愛知県 名古屋市</div><div class="price">¥24,700 〉</div></div>
+    ${tx("06/07","ＪＲ東海","¥1,360")}
+    ${tx("06/06","スターバックス コーヒー ジャパン 東","¥1,000")}
+    ${tx("06/06","ＤＣＭ","¥519")}
+    ${tx("06/06","ＤＣＭ","¥1,738")}
+    ${tx("06/04","STAR CLUSTER PTE. LTD.","¥1,654")}
+    ${tx("06/03","アマゾン シーオージェーピー","¥369")}
+    ${tx("06/03","アマゾン JP マーケットプレイス","¥3,235")}
+    ${tx("06/02","ナポリの窯 ストロベリーコーンズ 愛知","¥2,400")}
+    ${tx("06/01","セブンイレブン","¥393")}
+    ${tx("05/31","ソフトバンクM 東京都 港区","¥1")}
+    ${tx("05/31","ピアゴ サイレス","¥538")}
+    ${tx("05/31","ＥＴＣ 名古屋高速道路公社","¥860")}
+    ${tx("05/30","カフェドクリエ 栄地下中央一番街 愛知","¥710")}
   </div>
+
+  <div class="card">
+    <h2 style="font-size:30px;margin-bottom:24px;">ご利用合計金額</h2>
+    <div class="row"><span>前回締め日金額</span><span>¥249,215</span></div>
+    <div class="row"><span>お支払/調整金額</span><span class="green">-¥249,215</span></div>
+    <div class="row"><span>新規ご利用金額</span><span>¥140,041</span></div>
+    <div class="row"><strong>合計金額</strong><strong>¥140,041</strong></div>
+  </div>
+
+  <div class="card">
+    <h2 style="font-size:28px;margin-bottom:24px;">リボ払い・分割払い登録内容</h2>
+    <div class="row"><span>リボ払い・分割払いご利用可能枠</span><span>¥800,000</span></div>
+  </div>
+
+  <div class="card">
+    <div class="notice">ⓘ 登録状況等により、各項目が表示されない場合があります。請求内容については、カードご利用代金明細書をご確認ください。</div>
+    <div style="font-size:22px;margin-bottom:20px;">ペイフレックス あとリボ　<strong>登録済（利用可能）</strong></div>
+    <div class="tab-on">✓ リボ払いご利用状況</div>
+    <div class="tab-off">リボ払いご利用履歴</div>
+
+    <h3 style="font-size:24px;margin:34px 0 12px;">リボ払いご利用金額</h3>
+    <div class="row"><span>リボ払い今回締め日金額</span><span>¥0</span></div>
+    <div class="row"><span>リボ払いお支払い/調整金額</span><span>¥0</span></div>
+    <div class="row"><span>リボ払い新規ご利用金額</span><span>¥0</span></div>
+    <div class="row"><span>現在のリボ払いご利用残高</span><span>¥0</span></div>
+  </div>
+
+  <div class="card">
+    <h2 style="text-align:center;font-size:30px;">過去のご利用分</h2>
+  </div>
+
 </div>`;
+}
+
+function tx(date, shop, price){
+return `<div class="transaction"><div class="date">${date}</div><div class="shop">${shop}</div><div class="price">${price} 〉</div></div>`;
 }
 
 function showHotelDetail(){
 document.getElementById("app").innerHTML = header() + `
 <div class="container">
   <div class="card">
-
     <div class="transaction">
       <div class="date">06/06</div>
       <div class="shop">名古屋東急ホテル ー愛知県 名古屋市</div>
       <div class="price">¥24,700 ✕</div>
     </div>
-
     <div style="text-align:right;color:#0070ce;font-size:24px;margin-top:30px;">🖨 印刷</div>
-
     <div class="detail-amount">¥24,700</div>
-
-    <div class="detail-text">
-      2026/06/19 作成のご利用代金明細書に記載されています。
-    </div>
-
+    <div class="detail-text">2026/06/19 作成のご利用代金明細書に記載されています。</div>
     <hr>
-
-    <div style="margin-top:35px;font-size:30px;font-weight:bold;" class="darkblue">
-      📅 あと分割
-    </div>
-
-    <div style="margin-top:25px;font-size:22px;">
-      あと分割とは：<span style="color:#0070ce;">詳細はこちら 〉</span>
-    </div>
-
-    <div style="margin-top:30px;color:#0070ce;font-size:24px;font-weight:bold;">
-      あと分割を利用する 〉
-    </div>
-
-    <div style="margin-top:60px;font-size:34px;font-weight:bold;" class="darkblue">
-      NAGOYA TOKYU HOTEL
-    </div>
-
-<div class="card" style="margin-top:40px;">
-
-  <h2 style="
-    font-size:26px;
-    margin-bottom:30px;">
-    ご利用合計金額
-  </h2>
-
-  <table style="width:100%;font-size:20px;">
-    <tr>
-      <td style="padding:20px 0;">前回締め日金額</td>
-      <td style="text-align:right;">¥249,215</td>
-    </tr>
-
-    <tr>
-      <td style="padding:20px 0;">お支払/調整金額</td>
-      <td style="text-align:right;color:#00894c;">-¥249,215</td>
-    </tr>
-
-    <tr>
-      <td style="padding:20px 0;">新規ご利用金額</td>
-      <td style="text-align:right;">¥140,041</td>
-    </tr>
-
-    <tr style="font-weight:bold;">
-      <td style="padding:20px 0;">合計金額</td>
-      <td style="text-align:right;">¥140,041</td>
-    </tr>
-  </table>
-
-</div>
-
-<div class="card">
-
-  <h2 style="
-    font-size:26px;
-    margin-bottom:30px;">
-    リボ払い・分割払い登録内容
-  </h2>
-
-  <div style="
-    display:flex;
-    justify-content:space-between;
-    padding:20px 0;
-    border-top:1px solid #eee;">
-    <span>リボ払い・分割払いご利用可能枠</span>
-    <strong>¥800,000</strong>
-  </div>
-
-</div>
-
-<div class="card">
-
-  <div style="
-    border:1px solid #ddd;
-    border-radius:16px;
-    padding:24px;
-    margin-bottom:30px;
-    background:#fafafa;">
-
-    *登録状況等により、各項目が表示されない場合があります。
-    請求内容については、カードご利用代金明細書をご確認ください。
-
-  </div>
-
-  <div style="
-    font-size:22px;
-    margin-bottom:20px;">
-    ペイフレックス あとリボ　
-    <strong>登録済（利用可能）</strong>
-  </div>
-
-  <div style="
-    background:#006fc9;
-    color:white;
-    padding:18px;
-    text-align:center;
-    border-radius:12px 12px 0 0;
-    font-weight:bold;">
-    ✓ リボ払いご利用状況
-  </div>
-
-  <div style="
-    background:#eef2f6;
-    padding:18px;
-    text-align:center;
-    border-radius:0 0 12px 12px;
-    font-weight:bold;">
-    リボ払いご利用履歴
-  </div>
-
-  <h3 style="
-    margin-top:40px;
-    margin-bottom:20px;">
-    リボ払いご利用金額
-  </h3>
-
-  <table style="width:100%;font-size:20px;">
-
-    <tr>
-      <td style="padding:18px 0;">リボ払い今回締め日金額</td>
-      <td style="text-align:right;">¥0</td>
-    </tr>
-
-    <tr>
-      <td style="padding:18px 0;">リボ払いお支払い/調整金額</td>
-      <td style="text-align:right;">¥0</td>
-    </tr>
-
-    <tr>
-      <td style="padding:18px 0;">リボ払い新規ご利用金額</td>
-      <td style="text-align:right;">¥0</td>
-    </tr>
-
-    <tr>
-      <td style="padding:18px 0;">現在のリボ払いご利用残高</td>
-      <td style="text-align:right;">¥0</td>
-    </tr>
-
-  </table>
-
-</div>
-
-<div class="card">
-
-  <h2 style="
-    font-size:28px;
-    text-align:center;">
-    過去のご利用分
-  </h2>
-
-</div>
+    <div style="margin-top:35px;font-size:30px;font-weight:bold;" class="darkblue">📅 あと分割</div>
+    <div style="margin-top:25px;font-size:22px;">あと分割とは：<span style="color:#0070ce;">詳細はこちら 〉</span></div>
+    <div style="margin-top:30px;color:#0070ce;font-size:24px;font-weight:bold;">あと分割を利用する 〉</div>
+    <div style="margin-top:60px;font-size:34px;font-weight:bold;" class="darkblue">NAGOYA TOKYU HOTEL</div>
     <button class="backbtn" onclick="showList()">明細一覧へ戻る</button>
-
   </div>
 </div>`;
 }
 
 showList();
 </script>
-
 </body>
 </html>
