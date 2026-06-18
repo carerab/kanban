@@ -1,200 +1,309 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>カード利用明細サンプル</title>
+
 <style>
-*{box-sizing:border-box}
-body{
+*{
   margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
   background:#f5f7fa;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   color:#333;
 }
+
 .header{
-  position:sticky;top:0;z-index:10;
   background:#fff;
+  padding:16px;
   border-bottom:1px solid #ddd;
+}
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.menu{
+  width:48px;
+  height:48px;
+  background:#0070ce;
+  color:white;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+}
+
+.logo{
+  color:#0070ce;
+  font-weight:bold;
+  font-size:20px;
+}
+
+.logout{
+  color:#0070ce;
+}
+
+.selector{
+  margin-top:16px;
+  display:flex;
+  gap:10px;
+}
+
+.select{
+  flex:1;
+  background:white;
+  border:1px solid #ccc;
+  border-radius:8px;
+  padding:14px;
+}
+
+.cardbox{
+  width:120px;
+  background:white;
+  border:1px solid #ccc;
+  border-radius:8px;
+  padding:10px;
+  text-align:center;
+}
+
+.container{
   padding:16px;
 }
-.top{
-  display:flex;align-items:center;justify-content:space-between;
-}
-.menu{
-  width:52px;height:52px;background:#0070ce;color:white;
-  border-radius:10px;font-size:32px;display:flex;align-items:center;justify-content:center;
-}
-.logo{font-weight:800;color:#0070ce;font-size:22px;line-height:1}
-.logout{color:#0070ce;font-weight:600}
-.selects{
-  display:flex;gap:12px;margin-top:18px;
-}
-.select{
-  flex:1;background:#fff;border:1px solid #ccc;border-radius:8px;
-  padding:14px;font-size:16px;
-}
-.card-mini{
-  width:130px;border:1px solid #ddd;border-radius:12px;padding:8px;
-  display:flex;align-items:center;gap:8px;background:#fff;
-}
-.black-card{width:54px;height:34px;background:#111;border-radius:4px}
 
-.container{padding:18px}
-.panel{
-  background:#fff;border-radius:18px;margin-bottom:18px;
-  padding:20px;box-shadow:0 4px 14px rgba(0,0,0,.08);
+.card{
+  background:white;
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:16px;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
+
+.card-title{
+  font-size:16px;
+  font-weight:bold;
+  margin-bottom:12px;
+}
+
 .dropdown{
-  border:1px solid #aaa;border-radius:10px;padding:16px;
-  color:#006fc9;font-size:18px;margin-top:12px;
+  border:1px solid #ccc;
+  border-radius:10px;
+  padding:14px;
+  color:#0070ce;
 }
-.account{display:flex;gap:18px;align-items:flex-start}
-.card-img{width:90px;height:56px;background:#111;border-radius:6px}
-.account h1{font-size:28px;line-height:1.35;margin:0}
-.last4{font-size:20px;color:#666;margin-top:10px}
+
+.credit-card{
+  width:80px;
+  height:50px;
+  background:#111;
+  border-radius:8px;
+  margin-bottom:12px;
+}
+
+.product{
+  font-size:28px;
+  line-height:1.3;
+  margin-bottom:8px;
+}
+
+.last4{
+  color:#666;
+  margin-bottom:20px;
+}
+
 .row{
-  display:flex;justify-content:space-between;align-items:center;
-  border-top:1px solid #ddd;padding:18px 0;font-size:17px;
+  display:flex;
+  justify-content:space-between;
+  padding:18px 0;
+  border-top:1px solid #eee;
 }
-.amount{font-size:30px;font-weight:800}
-.link-row{
-  color:#006fc9;font-weight:700;display:flex;justify-content:space-between;
-  border-top:1px solid #ddd;padding-top:18px;
+
+.amount{
+  font-size:28px;
+  font-weight:bold;
 }
-.section-title{font-size:30px;font-weight:800;margin-bottom:6px}
-.period{font-size:20px;color:#555;line-height:1.4}
+
+.link{
+  color:#0070ce;
+  font-weight:bold;
+  padding-top:18px;
+  border-top:1px solid #eee;
+}
+
+.section-title{
+  font-size:32px;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+.period{
+  color:#666;
+  margin-bottom:20px;
+}
+
 .actions{
-  display:flex;border-top:1px solid #ddd;border-bottom:1px solid #ddd;
-  margin:20px -20px 16px;padding:16px 20px;gap:30px;color:#006fc9;font-weight:700;
+  display:flex;
+  gap:20px;
+  color:#0070ce;
+  font-weight:bold;
+  margin-bottom:16px;
 }
-.filters{display:flex;gap:10px;flex-wrap:wrap}
+
+.filters{
+  display:flex;
+  gap:8px;
+  margin-bottom:16px;
+}
+
 .filter{
-  border:1px solid #cbd7e6;border-radius:10px;padding:12px 18px;background:#fff;
-  color:#006fc9;font-weight:700;
+  border:1px solid #ccc;
+  border-radius:8px;
+  padding:12px;
+  background:white;
 }
-.tx{
-  display:grid;grid-template-columns:34px 56px 1fr 95px 20px;
-  gap:8px;align-items:center;
-  border-top:1px solid #ddd;padding:14px 0;
+
+.transaction{
+  display:grid;
+  grid-template-columns:60px 1fr 100px;
+  gap:10px;
+  padding:16px 0;
+  border-top:1px solid #eee;
 }
-.checkbox{width:24px;height:24px;border:2px solid #aaa;border-radius:5px}
-.date{font-size:20px;font-weight:800}
-.name{color:#006fc9;font-size:18px;font-weight:700;line-height:1.3}
-.status{color:#444;font-size:15px}
-.price{text-align:right;font-size:20px;font-weight:800}
-.green{color:#00864b}
-.arrow{color:#006fc9;font-size:28px}
-.feedback{
-  position:fixed;right:0;top:70%;background:#00856f;color:#fff;
-  writing-mode:vertical-rl;padding:16px 10px;border-radius:6px 0 0 6px;
+
+.date{
+  font-weight:bold;
+}
+
+.shop{
+  color:#0070ce;
+  font-weight:bold;
+}
+
+.price{
+  text-align:right;
+  font-weight:bold;
+}
+
+.green{
+  color:#00894c;
 }
 </style>
 </head>
+
 <body>
 
-<header class="header">
-  <div class="top">
-    <div class="menu">≡</div>
-    <div class="logo">AMERICAN<br>EXPRESS</div>
-    <div style="font-size:32px;color:#006fc9">⌕</div>
-    <div class="logout">ログアウト</div>
-  </div>
+<div class="header">
 
-  <div class="selects">
-    <div class="select">お選びください ▼</div>
-    <div class="card-mini"><div class="black-card"></div><span>-41006</span></div>
-  </div>
-</header>
+<div class="top">
+<div class="menu">☰</div>
+<div class="logo">AMERICAN EXPRESS</div>
+<div class="logout">ログアウト</div>
+</div>
 
-<main class="container">
+<div class="selector">
+<div class="select">お選びください ▼</div>
+<div class="cardbox">••••41006</div>
+</div>
 
-  <section class="panel">
-    <strong>ご利用履歴:</strong>
-    <div class="dropdown">直近のご利用分 ▼</div>
-  </section>
+</div>
 
-  <section class="panel">
-    <div class="account">
-      <div class="card-img"></div>
-      <div>
-        <h1>MARRIOTT BONVOY アメリカン・エキスプレス・プレミアム・カード</h1>
-        <div class="last4">••••41006</div>
-      </div>
-    </div>
+<div class="container">
 
-    <div class="row" style="margin-top:24px">
-      <span>今回締め日時点ご利用金額</span>
-      <span class="amount">¥249,215</span>
-    </div>
-    <div class="row">
-      <span>新規ご利用金額</span>
-      <span class="amount">¥140,041</span>
-    </div>
+<div class="card">
+<div class="card-title">ご利用履歴</div>
+<div class="dropdown">直近のご利用分 ▼</div>
+</div>
 
-    <div class="link-row">
-      <span>↓ カードご利用代金明細書（PDF形式）</span>
-      <span>›</span>
-    </div>
-  </section>
+<div class="card">
 
-  <section class="panel">
-    <div class="section-title">最近のご利用</div>
-    <div class="period">2026/05/20—今日現在（次回締め日 2026/06/19）</div>
+<div class="credit-card"></div>
 
-    <div class="actions">
-      <div>↓ ダウンロード</div>
-      <div>▣ 印刷</div>
-    </div>
+<div class="product">
+MARRIOTT BONVOY<br>
+アメリカン・エキスプレス・プレミアム・カード
+</div>
 
-    <div class="filters">
-      <div class="filter">すべての利用</div>
-      <div class="filter">区分 ▼</div>
-      <div class="filter">ご利用分 ▼</div>
-    </div>
+<div class="last4">••••41006</div>
 
-    <div style="margin:20px 0;color:#444">
-      □ すべて選択する（81件）
-    </div>
+<div class="row">
+<span>今回締め日時点ご利用金額</span>
+<span class="amount">¥249,215</span>
+</div>
 
-    <div id="transactions"></div>
-  </section>
+<div class="row">
+<span>新規ご利用金額</span>
+<span class="amount">¥140,041</span>
+</div>
 
-</main>
+<div class="link">
+↓ カードご利用代金明細書（PDF形式）
+</div>
 
-<div class="feedback">Feedback</div>
+</div>
 
-<script>
-const data = [
-  ["06/16","GENKIZUS HI HONBU","確定前","¥1,309"],
-  ["06/15","COINPARK AIPOSS","確定前","¥600"],
-  ["06/15","DRUGSTORE SQUARE","確定前","¥720"],
-  ["06/15","セブンイレブン","確定前","¥1,296"],
-  ["06/15","ファミリーマート 多治見笠原町東","確定前","¥821"],
-  ["06/15","名古屋駅前こころのクリニック 愛知県","確定前","¥1,510"],
-  ["06/15","名岐国際ゴルフ倶楽部 岐阜県 土岐市","確定前","¥10,022"],
-  ["06/14","ファミリーマート 黒川","確定前","¥869"],
-  ["06/13","スターバックス コーヒー ジャパン 東","確定前","¥1,000"],
-  ["06/10","前回分口座振替金額 お支払/調整分","","-¥249,215",true],
-  ["06/09","ナポリの窯 ストロベリーコーンズ 愛知","確定前","¥1,200"],
-  ["06/09","DMM 東京都 渋谷区","確定前","¥524"]
-];
+<div class="card">
 
-const area = document.getElementById("transactions");
-data.forEach(t=>{
-  area.innerHTML += `
-    <div class="tx">
-      <div class="checkbox"></div>
-      <div class="date">${t[0]}</div>
-      <div>
-        <div class="name ${t[4]?'green':''}">${t[1]}</div>
-        <div class="status ${t[4]?'green':''}">${t[2]}</div>
-      </div>
-      <div class="price ${t[4]?'green':''}">${t[3]}</div>
-      <div class="arrow">›</div>
-    </div>`;
-});
-</script>
+<div class="section-title">最近のご利用</div>
+
+<div class="period">
+2026/05/20〜今日現在
+</div>
+
+<div class="actions">
+<span>↓ ダウンロード</span>
+<span>🖨 印刷</span>
+</div>
+
+<div class="filters">
+<div class="filter">すべての利用</div>
+<div class="filter">区分 ▼</div>
+</div>
+
+<div class="transaction">
+<div class="date">06/16</div>
+<div class="shop">GENKIZUS HI HONBU</div>
+<div class="price">¥1,309</div>
+</div>
+
+<div class="transaction">
+<div class="date">06/15</div>
+<div class="shop">COINPARK AIPOSS</div>
+<div class="price">¥600</div>
+</div>
+
+<div class="transaction">
+<div class="date">06/15</div>
+<div class="shop">DRUGSTORE SQUARE</div>
+<div class="price">¥720</div>
+</div>
+
+<div class="transaction">
+<div class="date">06/15</div>
+<div class="shop">セブンイレブン</div>
+<div class="price">¥1,296</div>
+</div>
+
+<div class="transaction">
+<div class="date">06/10</div>
+<div class="shop green">
+前回分口座振替金額
+</div>
+<div class="price green">
+-¥249,215
+</div>
+</div>
+
+</div>
+
+</div>
 
 </body>
 </html>
